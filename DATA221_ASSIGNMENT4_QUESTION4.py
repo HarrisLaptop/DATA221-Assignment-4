@@ -66,3 +66,9 @@ test_accuracy_of_tree_model = accuracy_score(labels_test, class_probabilities_of
 print(train_accuracy_of_tree_model)
 print(test_accuracy_of_tree_model)
 
+# Feature scaling is necessary for neural networks since it scales all values close to 0, reducing the effects of skewed
+# data and extreme values.
+
+# An epoch represents one pass through the neural network model using the training dataset. Each epoch runs through
+# "batches" of samples in the dataset, updating the weights of the neurons each time it completes a batch until it reaches.
+# the end of the dataset. Training many epochs allows the model to recognize patterns.
