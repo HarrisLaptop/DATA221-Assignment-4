@@ -55,7 +55,10 @@ print(top_5_important_features)
 
 # Controlling model complexity can help with reducing overfitting by placing limits on what the model is trained on.
 # For example, the max_depth constraint can help with reducing overfitting by preventing memorization of a training sample.
-# This ensures that the model can make generalizations and learn patterns rather than memorize specific data samples.
+# This ensures that the model can make generalizations and learn patterns rather than memorize specific data samples. As
+# we've seen with the training/testing accuracies of this model with a max_depth constraint, the training accuracy has
+# changed from the overfitted, 100% accuracy, showing that the model is making more generalizations rather than relying on
+# memorization.
 
 # Feature importance contributes in interpreting the decision tree model since it tells you which features the
 # model has deemed the most effective at being able to partition data. This approach of comparing features to find the
