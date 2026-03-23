@@ -7,6 +7,7 @@ from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
+import pandas as pd
 
 # Load the breast cancer dataset here
 breast_cancer_dataset = load_breast_cancer()
@@ -23,7 +24,7 @@ features_train, features_test, labels_train, labels_test =train_test_split(
     random_state=42)
 
 # Define a decision tree classifier model using "entropy" as the splitting criterion
-decision_tree_classifier = DecisionTreeClassifier(criterion='entropy', max_depth=5)
+decision_tree_classifier = DecisionTreeClassifier(criterion='entropy', max_depth=5, random_state=42)
 
 # Train the decision tree classifier model using training sets
 decision_tree_classifier.fit(features_train, labels_train)
@@ -42,4 +43,22 @@ test_accuracy_of_tree_model = accuracy_score(labels_test, predicted_labels_of_te
 print(train_accuracy_of_tree_model) # Training Accuracy: 0.9934065934065934
 print(test_accuracy_of_tree_model) # Test Accuracy: 0.9473684210526315
 
-print(breast_cancer_dataset.)
+# Find the importance values of each feature and the feature names
+feature_names = breast_cancer_dataset.feature_names
+list_of_feature_importance = decision_tree_classifier.feature_importances_
+
+# Find the top 5 most important features
+top_5_important_features = pd.Series(list_of_feature_importance, index=feature_names).nlargest(5)
+
+# Display the top 5 most important features according to the model
+print(top_5_important_features)
+
+# Controlling model complexity can help with reducing overfitting by placing limits on what the model is trained on.
+# For example, the max_depth constraint can help with reducing overfitting by preventing memorization of a training sample.
+# This ensures that the model can make generalizations and learn patterns rather than memorize specific data samples.
+
+# Feature importance contributes in interpreting the decision tree model since it tells you which features the
+# model has deemed the most effective at being able to partition data. This approach of comparing features to find the
+# most effective partitions make it easier to interpret the model by allowing us to rank the features in a quantitative
+# manner. This also reduces the "black box effect" by making the model more transparent and easier to know how exactly
+# the model works and which features carry more significance in affecting the target results.
