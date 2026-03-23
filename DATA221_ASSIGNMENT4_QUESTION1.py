@@ -1,6 +1,7 @@
 # Harris Khan
 # March 22, 2026
 # DATA221 Assignment 4 Question 1
+from collections import Counter
 
 # Import libraries
 from sklearn.datasets import load_breast_cancer
@@ -20,12 +21,12 @@ print(target_labels.shape) # (569,)
 # There are 569 samples with 30 different features/variables in the feature matrix.
 # There are 569 samples with 1 binary target variable in the target vector
 
-# Find how many unique classes there are (0 and 1) and the number of samples within each class (212 and 357 respectively)
-list_of_different_classes, list_of_samples_in_each_class = np.unique(target_labels, return_counts=True)
+# Find the number of samples in each class
+class_counts = Counter(target_labels)
 
-# Print how many samples are in each class
-for index, count in zip(list_of_different_classes, list_of_samples_in_each_class):
-    print(f"{breast_cancer_dataset.target_names[index]}: {count}")
+# Report the number of samples in each class
+print("Number of samples in Malignant class:", class_counts[0])
+print("Number of samples in Benign class:", class_counts[1])
 
 # The dataset is imbalanced because the number of samples in one class is far greater than the other. If we look at the
 # printed data above, we see that there are 212 samples that belong to the malignant class and 357 samples that belong
