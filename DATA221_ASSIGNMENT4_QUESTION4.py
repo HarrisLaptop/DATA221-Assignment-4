@@ -36,15 +36,19 @@ features_test = standard_scaler.transform(features_test)
 # Create the neural network model as a sequence of layers
 neural_network_model = Sequential()
 
+# Create the input layer with 30 neurons (for 30 features) and add it to the neural network model
 input_layer = InputLayer(input_shape=(30,))
 neural_network_model.add(input_layer)
 
+# Create first hidden layer and add it to the neural network model
 first_hidden_layer = Dense(16)
 neural_network_model.add(first_hidden_layer)
 
+# Create output layer using sigmoid output unit and add it to the neural network model
 output_layer = Dense(1, activation='sigmoid')
 neural_network_model.add(output_layer)
 
+# Configure the neural network to use the binary_crossentropy loss function
 neural_network_model.compile(loss='binary_crossentropy')
 
 # Train the model using 10 different passes through the model
@@ -54,8 +58,8 @@ neural_network_model.fit(feature_matrix, target_labels, epochs=10)
 class_probabilities_of_training_data = (neural_network_model.predict(features_train) > 0.5).astype(int).flatten()
 class_probabilities_of_testing_data = (neural_network_model.predict(features_test) > 0.5).astype(int).flatten()
 
-#
-train_accuracy_of_tree_model = accuracy_score(labels_test, class_probabilities_of_training_data)
+# Compare predictions with target values to find accuracies
+train_accuracy_of_tree_model = accuracy_score(labels_train, class_probabilities_of_training_data)
 test_accuracy_of_tree_model = accuracy_score(labels_test, class_probabilities_of_testing_data)
 
 # Report training and testing accuracies
