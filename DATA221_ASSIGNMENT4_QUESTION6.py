@@ -4,7 +4,6 @@
 
 # Import libraries
 from tensorflow.keras.datasets import fashion_mnist
-import tensorflow as tf
 from tensorflow.keras import layers, models
 
 # Load dataset into split training and testing data
