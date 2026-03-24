@@ -78,10 +78,12 @@ class_probabilities_of_testing_data = (neural_network_model.predict(scaled_featu
 
 # Create a confusion matrix for the Decision Tree model
 confusion_matrix_for_tree_model = confusion_matrix(labels_test,predicted_labels_of_testing_data)
+print("Confusion Matrix for Decision Tree Model:")
 print(confusion_matrix_for_tree_model) # [[TP, FP], [FN, TN]] format
 
 # Create a confusion matrix for the Neural Network model
 confusion_matrix_for_neural_network_model = confusion_matrix(labels_test, class_probabilities_of_testing_data)
+print("Confusion Matrix for Neural Network Model:")
 print(confusion_matrix_for_neural_network_model) # [[TP, FP], [FN, TN]] format
 
 # I would prefer using the Decision Tree model to make my confusion matrix because the Decision Tree model is
