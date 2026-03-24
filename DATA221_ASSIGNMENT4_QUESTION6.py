@@ -17,23 +17,22 @@ features_test = features_test.astype("float32") / 255.0
 # Reshape to include channel dimension
 features_train = features_train.reshape(-1, 28, 28, 1)
 features_test = features_test.reshape(-1, 28, 28, 1)
-
 features_train = features_train[..., None]
 features_test = features_test[..., None]
 
-print("train shape:", features_train.shape)
-
+# Build the CNN Model
 model = models.Sequential([
     layers.Input(shape=(28, 28, 1)),
-    layers.Conv2D(16, 3, padding="same", activation="relu"),
-    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(16, 3, padding="same", activation="relu"), # Convolution layer
+    layers.MaxPooling2D((2, 2)), # Reduces dimensionality and overfitting
 
-    layers.Flatten(),
+    layers.Flatten(), # Convert 2D Matrix or Feature Map to 1D vector
 
     layers.Dense(64, activation="relu"),
-    layers.Dense(10, activation="softmax")
+    layers.Dense(10, activation="softmax") # Dense Output Layer, gives probabilities for 10 classes
 ])
 
+# Compile and Train the model
 model.compile(
     optimizer="adam",
     loss="sparse_categorical_crossentropy",
@@ -43,10 +42,10 @@ history = model.fit(
     validation_split=0.1,
     epochs=15)
 
-test_loss, test_acc = model.evaluate(features_test, labels_test)
+test_loss_of_model, test_accuracy_of_model = model.evaluate(features_test, labels_test)
 
-print("Test Loss:", test_loss)
-print("Test Accuracy:", test_acc)
+print("Test Loss:", test_loss_of_model)
+print("Test Accuracy:", test_accuracy_of_model)
 
 # A CNN model is preferred over fully connected networks such as neural networks for a number of reasons.
 # One reason is that to use a regular neural network on images, you need to flatten the image into one long
